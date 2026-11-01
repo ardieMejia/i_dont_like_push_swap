@@ -9,7 +9,7 @@
 #include "libft/libft.h"
 #include "libstructutils/libfree.h"
 #include "liboperations/liboperations.h"
-#include "simple.h"
+
 
 int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 {

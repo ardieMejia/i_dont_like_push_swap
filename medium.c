@@ -10,7 +10,8 @@
 #include "libstructutils/libfree.h"
 #include "liboperations/liboperations.h"
 #include "libhardcode/libhardcode.h"
-#include "medium.h"
+#include "push_swap.h"
+
 
 
 // int  push_2_to_b(Stack * game_stack){
