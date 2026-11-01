@@ -25,7 +25,7 @@
 #include "liboperations/liboperations.h"
 #include "complex.h"
 
-void	flush(Stack * game_stack)
+void	flush(t_stack * game_stack)
 {
 	while (game_stack->stackB)
 		pa(game_stack);
@@ -45,7 +45,7 @@ int	get_bit_count(int max_norm)
 }
 
 
-void	complex_sort(Stack * game_stack)
+void	complex_sort(t_stack * game_stack)
 {
 
 	int		max_bits;

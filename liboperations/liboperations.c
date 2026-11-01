@@ -8,15 +8,15 @@
 #include "../getters/libgetters.h"
 
 
-int ra(Stack * game_stack){
+int ra(t_stack * game_stack){
 	if (!game_stack->stackA)
 		return 1;
 	if (get_stack_length(game_stack->stackA) == 1)
 		return 0;
 	
-	Blob * old_head = game_stack->stackA;
-	Blob * new_head = game_stack->stackA->next;
-	Blob * last_blob = get_last_blob(game_stack->stackA);
+	t_blob * old_head = game_stack->stackA;
+	t_blob * new_head = game_stack->stackA->next;
+	t_blob * last_blob = get_last_blob(game_stack->stackA);
 	last_blob->next = old_head;
 	old_head->next = NULL;
 	game_stack->stackA = new_head;
@@ -32,13 +32,13 @@ int ra(Stack * game_stack){
 	return 0;
 }
 
-int rrb(Stack * game_stack){
+int rrb(t_stack * game_stack){
 	if (!game_stack->stackB){
 		return 1;
 	}
 
-	Blob * temp_last_blob = get_last_blob(game_stack->stackB);
-	Blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->stackB);
+	t_blob * temp_last_blob = get_last_blob(game_stack->stackB);
+	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->stackB);
 	temp_last_blob->next = game_stack->stackB;
 	game_stack->stackB = temp_last_blob;
 	temp_next_to_last_blob->next = NULL;
@@ -55,13 +55,13 @@ int rrb(Stack * game_stack){
 }
 
 
-int rra(Stack * game_stack){
+int rra(t_stack * game_stack){
 	if (!game_stack->stackA){
 		return 1;
 	}
 
-	Blob * temp_last_blob = get_last_blob(game_stack->stackA);
-	Blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->stackA);
+	t_blob * temp_last_blob = get_last_blob(game_stack->stackA);
+	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->stackA);
 	temp_last_blob->next = game_stack->stackA;
 	game_stack->stackA = temp_last_blob;
 	temp_next_to_last_blob->next = NULL;
@@ -76,13 +76,13 @@ int rra(Stack * game_stack){
 }
 
 
-int pb(Stack * game_stack)
+int pb(t_stack * game_stack)
 {
 	if (!game_stack->stackA){
 		return 1;
 	}
 
-	Blob * temp_blob = game_stack->stackA;
+	t_blob * temp_blob = game_stack->stackA;
 	game_stack->stackA = game_stack->stackA->next;
 	temp_blob->next = game_stack->stackB;
 	game_stack->stackB = temp_blob;
@@ -94,13 +94,13 @@ int pb(Stack * game_stack)
 }
 
 
-int pa(Stack * game_stack)
+int pa(t_stack * game_stack)
 {
 	if (!game_stack->stackB){
 		return 1;
 	}
 
-	Blob * temp_blob = game_stack->stackB;
+	t_blob * temp_blob = game_stack->stackB;
 	game_stack->stackB = game_stack->stackB->next;
 	temp_blob->next = game_stack->stackA;
 	game_stack->stackA = temp_blob;
@@ -112,15 +112,15 @@ int pa(Stack * game_stack)
 
 }
 
-int rb(Stack * game_stack){
+int rb(t_stack * game_stack){
 	if (!game_stack->stackB)
 		return 1;
 	if (get_stack_length(game_stack->stackB) == 1)
 		return 0;
 	
-	Blob * old_head = game_stack->stackB;
-	Blob * new_head = game_stack->stackB->next;
-	Blob * last_blob = get_last_blob(game_stack->stackB);
+	t_blob * old_head = game_stack->stackB;
+	t_blob * new_head = game_stack->stackB->next;
+	t_blob * last_blob = get_last_blob(game_stack->stackB);
 	last_blob->next = old_head;
 	old_head->next = NULL;
 	game_stack->stackB = new_head;
@@ -137,10 +137,10 @@ int rb(Stack * game_stack){
 }
 
 
-int sa(Stack * game_stack){
+int sa(t_stack * game_stack){
 	if (get_stack_length(game_stack->stackA) < 2)
 		return 1;
-	Blob * new_head = game_stack->stackA->next;
+	t_blob * new_head = game_stack->stackA->next;
 	
 	game_stack->stackA->next = new_head->next;
 	new_head->next = game_stack->stackA;

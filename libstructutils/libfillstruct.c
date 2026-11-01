@@ -10,22 +10,21 @@
 
 
 
-Stack * init_stack(){
-	// Stack *game_stack = (Stack *)malloc(sizeof(Stack));
-	Stack * game_stack = ft_calloc(1, sizeof(Stack));
+t_stack * init_stack(){
+	t_stack * game_stack = ft_calloc(1, sizeof(t_stack));
 	return game_stack;
 }
 	
-void fill_stack_values(Stack* game_stack, int * list_of_numbers, int list_of_numbers_length )
+void fill_stack_values(t_stack* game_stack, int * list_of_numbers, int list_of_numbers_length )
 {
 	int i = 0;
-	Blob *current_pointer = NULL;
-	Blob *tracking_pointer = NULL;
+	t_blob *current_pointer = NULL;
+	t_blob *tracking_pointer = NULL;
 	game_stack->stackA=NULL;
 	game_stack->stackB=NULL;
 
 	while(i < list_of_numbers_length){
-		current_pointer = malloc(sizeof(Blob));		
+		current_pointer = malloc(sizeof(t_blob));		
 		current_pointer->value = list_of_numbers[i];
 		current_pointer->norm = list_of_numbers[i];
 		current_pointer->next = NULL;
@@ -52,9 +51,9 @@ void fill_stack_values(Stack* game_stack, int * list_of_numbers, int list_of_num
 
 }
 
-void fill_latest_cost(Stack * game_stack)
+void fill_latest_cost(t_stack * game_stack)
 {
-	Blob * current_tracker = game_stack->stackA;
+	t_blob * current_tracker = game_stack->stackA;
 	int index;
 	int stack_length = get_stack_length(game_stack->stackA);
 	while(current_tracker)

@@ -11,7 +11,7 @@
 #include "liboperations/liboperations.h"
 #include "simple.h"
 
-int simple_pb_one_chunk(Stack * game_stack, int chunk_start, int chunk_end)
+int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 {
 	int size = get_stack_length(game_stack->stackA);
 	int moved = 0;
@@ -38,7 +38,7 @@ int simple_pb_one_chunk(Stack * game_stack, int chunk_start, int chunk_end)
 }
 
 
-void simple_while_more_than_0(Stack * game_stack)
+void simple_while_more_than_0(t_stack * game_stack)
 {
 	int size = get_stack_length(game_stack->stackA);
 	int chunk_count = 5;
@@ -63,7 +63,7 @@ void simple_while_more_than_0(Stack * game_stack)
 
 
 
-void simple_push_stupidly_back_a(Stack * game_stack){
+void simple_push_stupidly_back_a(t_stack * game_stack){
 	int current_norm;
 	int position;
 	current_norm = get_stack_length(game_stack->stackB) - 1;
@@ -104,11 +104,11 @@ void simple_push_stupidly_back_a(Stack * game_stack){
 }
 
 
-void simple_push_all_chunks_to_b(Stack * game_stack){
+void simple_push_all_chunks_to_b(t_stack * game_stack){
 	simple_while_more_than_0(game_stack);
 	simple_push_stupidly_back_a(game_stack);	
 }
 
-void start_simple(Stack * game_stack){
+void start_simple(t_stack * game_stack){
 	simple_push_all_chunks_to_b(game_stack);
 }

@@ -32,7 +32,7 @@
 // void simple_while_more_than_0(Stack * game_stack);
 // void simple_push_stupidly_back_a(Stack * game_stack);
 // void simple_push_all_chunks_to_b(Stack * game_stack);
-void start_medium(Stack * game_stack)
+void start_medium(t_stack * game_stack)
 {
 
 	if(process_sort_3(game_stack))
@@ -66,7 +66,7 @@ void start_medium(Stack * game_stack)
 }
 
 
-void push_current_upper_chunk_to_b(Stack * game_stack, int lower, int upper)
+void push_current_upper_chunk_to_b(t_stack * game_stack, int lower, int upper)
 {
 	int size = get_stack_length(game_stack->stackA);
 	int norm_value_at_top;
@@ -88,7 +88,7 @@ void push_current_upper_chunk_to_b(Stack * game_stack, int lower, int upper)
 }
 
 
-void push_back_to_descending(Stack * game_stack, int lower, int upper){
+void push_back_to_descending(t_stack * game_stack, int lower, int upper){
 	int current_norm_value = upper;
 	// int current_position;
 

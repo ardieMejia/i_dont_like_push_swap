@@ -25,7 +25,7 @@
 // char * filter_arguments(char ** filtered_input, int * method, char ** argc, int argv){
 
 
-int is_method(char * maybe_option, Method * method){
+int is_method(char * maybe_option, t_method * method){
 	int result = 1;
 
 	if (ft_strncmp(maybe_option, "--simple", 8))
@@ -92,7 +92,7 @@ int is_all_numbers(char ** snipped_argv, int ** list_of_numbers, int length){
 }
 
 
-int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, Method *method)
+int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, t_method *method)
 {
 	char * maybe_option = arguments[1];
 	char * found = NULL;
@@ -136,7 +136,7 @@ int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, Method 
 
 
 
-// int filter_arguments_and_return_error(char ** filtered_input, Method * method, int argc, char ** argv){
+// int filter_arguments_and_return_error(char ** filtered_input, t_method * method, int argc, char ** argv){
 // 	char * option;
 // 	char * error_message;
 
@@ -157,7 +157,7 @@ int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, Method 
 // 	return 0;
 // }
 
-int is_valid_option_string(char * flag, Method * method){
+int is_valid_option_string(char * flag, t_method * method){
 	int result = 1;
 
 	if (!ft_strncmp(flag, "--simple", 9))
@@ -189,7 +189,7 @@ int is_second_arg_number(int argc, char ** argv)
 	return 1;
 }
 
-int process_first_arg_if_valid(int argc, char ** argv, Method * method)
+int process_first_arg_if_valid(int argc, char ** argv, t_method * method)
 {
 	if(!is_valid_option_string(argv[1], method))
 	{
@@ -198,7 +198,7 @@ int process_first_arg_if_valid(int argc, char ** argv, Method * method)
 	return 1;
 }
 
-int process_second_arg_if_valid(int argc, char ** argv, Method * method)
+int process_second_arg_if_valid(int argc, char ** argv, t_method * method)
 {       	
 	if(!is_valid_option_string(argv[2], method))
 	{
@@ -207,10 +207,10 @@ int process_second_arg_if_valid(int argc, char ** argv, Method * method)
 	return 1;
 }
 
-int process_valid_input(int argc, char ** argv, int * number_input_start, Method * method)
+int process_valid_input(int argc, char ** argv, int * number_input_start, t_method * method)
 {
 	int i = 1;
-	Method temp_method = ADAPTIVE;
+	t_method temp_method = ADAPTIVE;
 	if (argc == 1){
 		// write(1,"Error\n",6);
 		return 0;

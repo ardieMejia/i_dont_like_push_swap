@@ -67,7 +67,7 @@ void display_stack_operations(char * list_of_operations){
 
 
 
-void fill_norm(Stack * game_stack)
+void fill_norm(t_stack * game_stack)
 {
 
 	int stack_a_length = get_stack_length(game_stack->stackA);
@@ -80,7 +80,7 @@ void fill_norm(Stack * game_stack)
 	// 	printf("\n temp_arrat %d\n", temp_array[0]);
 
 	i=0;
-	Blob * current = game_stack->stackA;
+	t_blob * current = game_stack->stackA;
 	while(current){
 		temp_array[i] = current->value;
 		current = current->next;
@@ -127,9 +127,9 @@ void fill_norm(Stack * game_stack)
 
 
 
-Stack * create_game_stack(int * list_of_numbers, int length)
+t_stack * create_game_stack(int * list_of_numbers, int length)
 {
-	Stack *game_stack;
+	t_stack *game_stack;
 		
 	game_stack = init_stack();
 	game_stack->list_of_operations = NULL;
@@ -146,7 +146,7 @@ Stack * create_game_stack(int * list_of_numbers, int length)
 
 
 int main (int argc, char **argv){
-	Method method;
+	t_method method;
 	method = ADAPTIVE;
 	char * filtered_input = NULL;
 	int * list_of_numbers;
@@ -174,7 +174,7 @@ int main (int argc, char **argv){
 		free(list_of_numbers);
 		return 1;
 	}
-	Stack * game_stack = create_game_stack(list_of_numbers, argc - number_input_start);
+	t_stack * game_stack = create_game_stack(list_of_numbers, argc - number_input_start);
 
 	
 

@@ -5,45 +5,41 @@
 #include <stdbool.h>
 
 
-typedef enum  Method{
+typedef enum  s_method{
     SIMPLE,
     MEDIUM,
     COMPLEX,
     ADAPTIVE,
     BENCH
-} Method;
+} t_method;
 
 
 
-enum Half {
-    TOP_HALF,
-    BOTTOM_HALF
-};
 
-typedef struct Blob
+
+typedef struct s_blob
 {
     int value;
     int norm;
     int cost;
-    enum Half half;
-    struct Blob * next;
-    struct Blob * prev;
+    struct s_blob * next;
+    struct s_blob * prev;
     bool bench;
-}Blob;
+}t_blob;
 
 
-typedef struct Stack
+typedef struct s_stack
 {
-    struct Blob *stackA;
-    struct Blob *stackB;
+    struct s_blob *stackA;
+    struct s_blob *stackB;
     char * list_of_operations;
-}Stack;
+}t_stack;
 
-Stack * init_stack();
+t_stack * init_stack();
     
 
-void fill_stack_values(Stack* game_stack, int * list_of_numbers, int list_of_numbers_length );
-void fill_latest_cost(Stack * game_stack);
+void fill_stack_values(t_stack* game_stack, int * list_of_numbers, int list_of_numbers_length );
+void fill_latest_cost(t_stack * game_stack);
 
 
 
