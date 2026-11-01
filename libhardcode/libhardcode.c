@@ -9,18 +9,18 @@
 #include "../liboperations/liboperations.h"
 
 
-static int first(Stack * game_stack){
+static int first(t_stack * game_stack){
 	return game_stack->stackA->norm;
 }
-static int second(Stack * game_stack){
+static int second(t_stack * game_stack){
 	return game_stack->stackA->next->norm;
 }
 
-static int third(Stack * game_stack){
+static int third(t_stack * game_stack){
 	return game_stack->stackA->next->next->norm;
 }
 
-int process_sort_3(Stack * game_stack){
+int process_sort_3(t_stack * game_stack){
 	if(get_stack_length(game_stack->stackA) != 3)
 		return 0;
 		

@@ -7,7 +7,7 @@
 
 
 
-int get_stack_length(Blob * stack){
+int get_stack_length(t_blob * stack){
 	int i = 0;
 	while(stack){
 		stack = stack->next;
@@ -16,8 +16,8 @@ int get_stack_length(Blob * stack){
 	return i;
 }
 
-Blob * get_closest_candidate_from_A(Blob * stackA, int norm_from_b){
-	Blob * closest_candidate = stackA;
+t_blob * get_closest_candidate_from_A(t_blob * stackA, int norm_from_b){
+	t_blob * closest_candidate = stackA;
 	while(stackA){
 		if(stackA->norm < closest_candidate->norm && stackA->norm > norm_from_b)
 			closest_candidate = stackA;
@@ -26,7 +26,7 @@ Blob * get_closest_candidate_from_A(Blob * stackA, int norm_from_b){
 	return closest_candidate;
 }
 
-int get_lowest_cost(Stack * game_stack, Blob* candidate_from_A, Blob* candidate_from_B)
+int get_lowest_cost(t_stack * game_stack, t_blob* candidate_from_A, t_blob* candidate_from_B)
 {
 	// game_stack->stackA->value = 4;
 	// amount_to_calculate = 4;
@@ -37,7 +37,7 @@ int get_lowest_cost(Stack * game_stack, Blob* candidate_from_A, Blob* candidate_
 	int combined_cost = 0;
 	int lowest_total_cost = INT_MAX;
 	int offset_to_search = get_stack_length(game_stack->stackB)/2;
-	Blob * current_tracker = game_stack->stackB;
+	t_blob * current_tracker = game_stack->stackB;
 	int norm_lowest_cost_from_B = current_tracker->norm;
 	while(i < offset_to_search && !current_tracker){
 		candidate_from_A = get_closest_candidate_from_A(game_stack->stackA, current_tracker->norm);
@@ -52,9 +52,9 @@ int get_lowest_cost(Stack * game_stack, Blob* candidate_from_A, Blob* candidate_
 }
 
 
-Blob * get_last_blob(Blob * stack){
+t_blob * get_last_blob(t_blob * stack){
 
-	Blob * temp_blob = stack;
+	t_blob * temp_blob = stack;
 	while(temp_blob->next){
 		temp_blob=temp_blob->next;
 	}
@@ -62,8 +62,8 @@ Blob * get_last_blob(Blob * stack){
 }
 
 
-Blob * get_next_to_last_blob(Blob * stack){
-	Blob * temp_blob = stack;
+t_blob * get_next_to_last_blob(t_blob * stack){
+	t_blob * temp_blob = stack;
 	while(temp_blob->next->next){
 		temp_blob=temp_blob->next;
 	}
@@ -83,7 +83,7 @@ int get_less_than_sqrt(int number){
 }
 
 
-int get_value_from_index(Blob* blob, int position){
+int get_value_from_index(t_blob* blob, int position){
 	int i = 0;
 	int norm = 99;
 	while (blob)
@@ -96,7 +96,7 @@ int get_value_from_index(Blob* blob, int position){
 	return -99;
 }
 
-int get_norm_from_position(Blob* blob, int position){
+int get_norm_from_position(t_blob* blob, int position){
 	int i = 0;
 	int norm = 99;
 	while (blob)
@@ -109,12 +109,12 @@ int get_norm_from_position(Blob* blob, int position){
 	return -99;
 }
 
-int get_index_from_norm(Blob* head, int norm)
+int get_index_from_norm(t_blob* head, int norm)
 {
 	if (!head)
 		abort();
 	int i = 0;
-	Blob *current_pointer = head;
+	t_blob *current_pointer = head;
 
 
 

@@ -9,7 +9,7 @@
 #include "../getters/libgetters.h"
 
 
-// int get_at_i_aschar(Blob * blob, char * string, int n)
+// int get_at_i_aschar(t_blob * blob, char * string, int n)
 // {
 // 	int i;
 // 	i = 0;
@@ -21,7 +21,7 @@
 // 	}
 // }
 
-void display_state_output(Stack * game_stack)
+void display_state_output(t_stack * game_stack)
 {
 	printf("\n printing debug info...\n");
 	int size_a = 0;

@@ -5,7 +5,7 @@
 
 
 
-int process_sort_3(Stack * game_stack);
+int process_sort_3(t_stack * game_stack);
 
 
 
