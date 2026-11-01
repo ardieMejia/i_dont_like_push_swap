@@ -20,10 +20,10 @@
 #include "getters/libgetters.h"
 #include "libft/libft.h"
 #include "libstructutils/libfree.h"
+#include "push_swap.h"
 
 
-#include "simple.h"
-#include "medium.h"
+
 
 
 
