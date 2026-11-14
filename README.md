@@ -1,6 +1,6 @@
 # push_swap #
 
-## sample README ##
+## sample README done ##
 
 ###### Example commands to run: ######
 
