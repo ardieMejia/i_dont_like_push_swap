@@ -70,12 +70,12 @@ void start_medium(t_stack * game_stack)
 void push_current_upper_chunk_to_b(t_stack * game_stack, int lower, int upper)
 {
 	int size = get_stack_length(game_stack->stackA);
-	int norm_value_at_top;
+	int rank_value_at_top;
 	printf("\n upper %d\n", upper);
 	printf("\n lower %d\n", lower);
 	while(size > 0){
-		norm_value_at_top = get_norm_from_position(game_stack->stackA, 0);
-		if (norm_value_at_top >= lower && norm_value_at_top <= upper){
+		rank_value_at_top = get_rank_from_position(game_stack->stackA, 0);
+		if (rank_value_at_top >= lower && rank_value_at_top <= upper){
 			printf("\n gets pushed\n");
 			pb(game_stack);
 
@@ -90,26 +90,26 @@ void push_current_upper_chunk_to_b(t_stack * game_stack, int lower, int upper)
 
 
 void push_back_to_descending(t_stack * game_stack, int lower, int upper){
-	int current_norm_value = upper;
+	int current_rank_value = upper;
 	// int current_position;
 
 
 	printf("\n current lower %d\n", lower);
 
 
-	while(current_norm_value > lower){
-		if (get_index_from_norm(game_stack->stackB, current_norm_value) < 0)
+	while(current_rank_value > lower){
+		if (get_index_from_rank(game_stack->stackB, current_rank_value) < 0)
 			return;
-		printf("\n curent norm value %d\n", current_norm_value);
-		if (get_index_from_norm(game_stack->stackB, current_norm_value) < get_stack_length(game_stack->stackB) / 2){			
-			while(get_index_from_norm(game_stack->stackB, current_norm_value) != 0)
+		printf("\n curent rank value %d\n", current_rank_value);
+		if (get_index_from_rank(game_stack->stackB, current_rank_value) < get_stack_length(game_stack->stackB) / 2){			
+			while(get_index_from_rank(game_stack->stackB, current_rank_value) != 0)
 				rb(game_stack);
 
 		}
 		else
-			while(get_index_from_norm(game_stack->stackB, current_norm_value) != 0)
+			while(get_index_from_rank(game_stack->stackB, current_rank_value) != 0)
 				rrb(game_stack);
-		current_norm_value--;
+		current_rank_value--;
 		pa(game_stack);
 	}
 }

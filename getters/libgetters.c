@@ -16,10 +16,10 @@ int get_stack_length(t_blob * stack){
 	return i;
 }
 
-t_blob * get_closest_candidate_from_A(t_blob * stackA, int norm_from_b){
+t_blob * get_closest_candidate_from_A(t_blob * stackA, int rank_from_b){
 	t_blob * closest_candidate = stackA;
 	while(stackA){
-		if(stackA->norm < closest_candidate->norm && stackA->norm > norm_from_b)
+		if(stackA->rank < closest_candidate->rank && stackA->rank > rank_from_b)
 			closest_candidate = stackA;
 		stackA = stackA->next;
 	}
@@ -38,9 +38,9 @@ int get_lowest_cost(t_stack * game_stack, t_blob* candidate_from_A, t_blob* cand
 	int lowest_total_cost = INT_MAX;
 	int offset_to_search = get_stack_length(game_stack->stackB)/2;
 	t_blob * current_tracker = game_stack->stackB;
-	int norm_lowest_cost_from_B = current_tracker->norm;
+	int rank_lowest_cost_from_B = current_tracker->rank;
 	while(i < offset_to_search && !current_tracker){
-		candidate_from_A = get_closest_candidate_from_A(game_stack->stackA, current_tracker->norm);
+		candidate_from_A = get_closest_candidate_from_A(game_stack->stackA, current_tracker->rank);
 		combined_cost = candidate_from_A->cost + current_tracker->cost;
 		if (combined_cost < lowest_total_cost)
 			candidate_from_B = current_tracker;
@@ -85,7 +85,7 @@ int get_less_than_sqrt(int number){
 
 int get_value_from_index(t_blob* blob, int position){
 	int i = 0;
-	int norm = 99;
+	int rank = 99;
 	while (blob)
 	{
 		if(i == position)
@@ -96,20 +96,20 @@ int get_value_from_index(t_blob* blob, int position){
 	return -99;
 }
 
-int get_norm_from_position(t_blob* blob, int position){
+int get_rank_from_position(t_blob* blob, int position){
 	int i = 0;
-	int norm = 99;
+	int rank = 99;
 	while (blob)
 	{
 		if(i == position)
-			return blob->norm;
+			return blob->rank;
 		i++;
 		blob=blob->next;		
 	}
 	return -99;
 }
 
-int get_index_from_norm(t_blob* head, int norm)
+int get_index_from_rank(t_blob* head, int rank)
 {
 	if (!head)
 		abort();
@@ -119,7 +119,7 @@ int get_index_from_norm(t_blob* head, int norm)
 
 
 	while(current_pointer){
-		if (current_pointer->norm == norm)
+		if (current_pointer->rank == rank)
 			return i;
 		current_pointer = current_pointer->next;
 		i++;

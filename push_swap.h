@@ -13,9 +13,11 @@ void push_back_to_descending(t_stack * game_stack, int lower, int upper);
 
 void base_swap(int * a, int * b);
 void display_stack_operations(char * list_of_operations);
-void fill_norm(t_stack * game_stack);
+void fill_rank(t_stack * game_stack);
 t_stack * create_game_stack(int * list_of_numbers, int length);
 
+void radix_sort(t_stack *game_stack);
+int	get_max_bit(int	size);
 
     
 #endif // PUSH_SWAP_H

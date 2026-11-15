@@ -20,7 +20,7 @@ typedef enum  s_method{
 typedef struct s_blob
 {
     int value;
-    int norm;
+    int rank;
     int cost;
     struct s_blob * next;
     struct s_blob * prev;

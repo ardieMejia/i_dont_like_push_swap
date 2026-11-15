@@ -10,14 +10,14 @@
 
 
 static int first(t_stack * game_stack){
-	return game_stack->stackA->norm;
+	return game_stack->stackA->rank;
 }
 static int second(t_stack * game_stack){
-	return game_stack->stackA->next->norm;
+	return game_stack->stackA->next->rank;
 }
 
 static int third(t_stack * game_stack){
-	return game_stack->stackA->next->next->norm;
+	return game_stack->stackA->next->next->rank;
 }
 
 int process_sort_3(t_stack * game_stack){

@@ -1,7 +1,7 @@
 TARGET=push_swap
 CC=gcc
 # OBJECTS=input_cleaner.o
-SRCS = push_swap.c simple.c medium.c
+SRCS = push_swap.c simple.c medium.c complex01.c
 
 $(TARGET): subdir
 	$(CC) -g -m64  $(SRCS) -Lgetters -lgetters -Llibstructutils -lstructutils -Llibhardcode -lhardcode -Lliboperations -loperations -Llibft -lft -Werror -Wall -Wextra -o push_swap

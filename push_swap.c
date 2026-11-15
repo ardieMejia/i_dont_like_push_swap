@@ -67,7 +67,7 @@ void display_stack_operations(char * list_of_operations){
 
 
 
-void fill_norm(t_stack * game_stack)
+void fill_rank(t_stack * game_stack)
 {
 
 	int stack_a_length = get_stack_length(game_stack->stackA);
@@ -108,13 +108,13 @@ void fill_norm(t_stack * game_stack)
 		current = game_stack->stackA;
 		while(current){
 			if(temp_array[i] == current->value)
-				current->norm = i ;
+				current->rank = i ;
 			current = current->next;
 		}
 		i++;
 	}
 
-	// printf("\n game_stack first norm (4 i think): %d\n", game_stack->stackA->norm_index);
+	// printf("\n game_stack first rank (4 i think): %d\n", game_stack->stackA->rank_index);
 	free(temp_array);
 }
 
@@ -138,14 +138,58 @@ t_stack * create_game_stack(int * list_of_numbers, int length)
 	fill_stack_values(game_stack, list_of_numbers, length);
 
 	fill_latest_cost(game_stack);
-	fill_norm(game_stack);
+	fill_rank(game_stack);
 	return game_stack;
 	
+}
+
+void get_method_from_disorder(float computed_value, t_method * method){
+	printf("computed disorder: %f", computed_value);
+	if (computed_value < 0.2){
+		*method = SIMPLE;
+	}else if (computed_value < 0.5){
+		*method = MEDIUM;
+	}else
+		*method = COMPLEX;
+	
+}
+
+float compute_disorder(t_stack * game_stack){
+	int mistakes = 0;
+	int total_pairs = 0;
+	int i = 0;
+	int j = 0;
+	int size = get_stack_length(game_stack->stackA);
+	while(i < size - 1){
+		j = i;
+                while (j < size - 1) {
+                  total_pairs++;
+                  j++;
+                  if (get_rank_from_position(game_stack->stackA, i) >
+                      get_rank_from_position(game_stack->stackA, j))
+                    mistakes++;
+                }
+                i++;
+        }
+	// *method =  SIMPLE;
+
+	// int dividend = 3;
+	// int divisor = 2;
+	// float answer = (float)dividend / (float)divisor;
+
+
+	return (float)mistakes/(float)total_pairs;
+
+
 }
 
 
 
 int main (int argc, char **argv){
+
+
+
+
 
 	t_method method;
 
@@ -183,7 +227,10 @@ int main (int argc, char **argv){
 	}
 	t_stack * game_stack = create_game_stack(list_of_numbers, argc - number_input_start);
 
+
+	float computed_disorder = compute_disorder(game_stack);
 	
+
 
 	if(method == SIMPLE){
 		printf("\n simple\n");
@@ -191,8 +238,20 @@ int main (int argc, char **argv){
 	}else if(method == MEDIUM){
 		start_medium(game_stack);
 	}
-	else if(method == COMPLEX)
-		printf("\n medium\n");
+	else if(method == COMPLEX){
+		radix_sort(game_stack);
+		printf("\n complex\n");
+	}
+	else if(method == ADAPTIVE)
+	{
+		get_method_from_disorder(computed_disorder, &method);
+		printf("\n adaptive\n");
+		free(filtered_input);
+		free(list_of_numbers);
+		list_of_numbers = NULL;
+		free_game(game_stack);
+		return 0;
+	}
 	else
 		return 1;
 	

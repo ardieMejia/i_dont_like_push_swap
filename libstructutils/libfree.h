@@ -13,6 +13,6 @@ void fill_latest_cost(t_stack * game_stack);
 
 
 
-int get_index_from_norm(t_blob* stack, int norm);
+int get_index_from_rank(t_blob* stack, int rank);
 
 #endif // LIBFREE_H

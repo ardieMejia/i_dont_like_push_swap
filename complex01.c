@@ -24,7 +24,12 @@
 #include "libhardcode/libhardcode.h"
 #include "push_swap.h"
 
-static int	get_max_bit(int	size)
+
+
+
+
+
+int	get_max_bit(int	size)
 {
 	int	i;
 	int	count;
@@ -39,27 +44,27 @@ static int	get_max_bit(int	size)
 	return (count);
 }
 
-static void assign_indexes(t_node *stack_a)
-{
-	t_node	*current;
-	t_node	*runner;
-	int	id;
+// static void assign_indexes(t_stack *game_stack)
+// {
+// 	t_blob	current;
+// 	t_blob	runner;
+// 	int	id;
 	
-	current =  (game_stack -> stackA);
-	while (current)
-	{
-		id = 0;
-		runner = stack_a;
-		while (runner)
-		{
-			if (current -> number > runner -> number)
-				id++;
-			runner = runner -> next;
-		}
-		current -> rank = id;
-		current = current -> next;
-	}
-}
+// 	current =  game_stack->stackA;
+// 	while (current)
+// 	{
+// 		id = 0;
+// 		runner = game_stack->stackA;
+// 		while (runner)
+// 		{
+// 			if (current -> value > runner -> value)
+// 				id++;
+// 			runner = runner -> next;
+// 		}
+// 		current -> rank = id;
+// 		current = current -> next;
+// 	}
+// }
 
 void radix_sort(t_stack *game_stack)
 {
@@ -71,9 +76,11 @@ void radix_sort(t_stack *game_stack)
 	if (!(game_stack -> stackA) || !((game_stack -> stackA) ))
 		return ;
 	
-	assign_indexes((game_stack -> stackA));
-	max_bits = get_max_bit(ft_lstsize(game_stack -> stackA));
-	size = ft_lstsize(*stack_a);
+	// assign_indexes((game_stack -> stackA));
+	max_bits = get_max_bit(get_stack_length(game_stack->stackA));
+		// ft_lstsize(game_stack -> stackA));
+	// size = ft_lstsize(game_stack->stackA);
+	size = get_stack_length(game_stack->stackA);
 	i = 0;
 	while (i < max_bits)
 	{
@@ -81,12 +88,13 @@ void radix_sort(t_stack *game_stack)
 		while (j < size)
 		{
 			if(((game_stack -> stackA)  -> rank >> i) & 1)
-				ra(stack_a);
+				ra(game_stack);
 			else
-				pb((game_stack -> stackA), (game_stack -> stackB));
+				pb(game_stack);
 			j++;
 		}
 		while ((game_stack -> stackB) )
-			pa((game_stack -> stackA),(game_stack -> stackB));
+			pa(game_stack);
 		i++;
 	}
+}

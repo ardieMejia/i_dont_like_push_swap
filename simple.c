@@ -17,18 +17,18 @@ int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 	int moved = 0;
 	printf("\n szie %d\n", size);
 	printf("\n chunk_end %d\n", chunk_end);
-	int norm_at_top;
+	int rank_at_top;
 	int total_to_push = chunk_end - chunk_start;
 
 	while(moved < total_to_push)
 	{
-		norm_at_top = get_norm_from_position(game_stack->stackA, 0);
-		printf("\n norm_at_top %d\n", norm_at_top);
-		if(norm_at_top > chunk_end){
+		rank_at_top = get_rank_from_position(game_stack->stackA, 0);
+		printf("\n rank_at_top %d\n", rank_at_top);
+		if(rank_at_top > chunk_end){
 			ra(game_stack);
 		}else{
 			pb(game_stack);
-			if (norm_at_top < (chunk_start + chunk_end) / 2)
+			if (rank_at_top < (chunk_start + chunk_end) / 2)
 				rb(game_stack);
 			moved++;
 		}
@@ -64,17 +64,17 @@ void simple_while_more_than_0(t_stack * game_stack)
 
 
 void simple_push_stupidly_back_a(t_stack * game_stack){
-	int current_norm;
+	int current_rank;
 	int position;
-	current_norm = get_stack_length(game_stack->stackB) - 1;
+	current_rank = get_stack_length(game_stack->stackB) - 1;
 	// int i = 0;
-	while(current_norm > -1){
-		   position = get_index_from_norm(game_stack->stackB, current_norm);
+	while(current_rank > -1){
+		   position = get_index_from_rank(game_stack->stackB, current_rank);
 
         if (position == -1)
         {
-            printf("Error: normalized index %d not found in stack B\n",
-                current_norm);
+            printf("Error: rankalized index %d not found in stack B\n",
+                current_rank);
             return;
         }
 
@@ -85,8 +85,8 @@ void simple_push_stupidly_back_a(t_stack * game_stack){
             else
                 rrb(game_stack);
 
-            position = get_index_from_norm(
-                game_stack->stackB, current_norm);
+            position = get_index_from_rank(
+                game_stack->stackB, current_rank);
 
             if (position == -1)
             {
@@ -95,7 +95,7 @@ void simple_push_stupidly_back_a(t_stack * game_stack){
         }
 
         pa(game_stack);
-        current_norm--;
+        current_rank--;
 
 
 	
