@@ -51,34 +51,34 @@ void fill_stack_values(t_stack* game_stack, int * list_of_numbers, int list_of_n
 
 }
 
-void fill_latest_cost(t_stack * game_stack)
-{
-	t_blob * current_tracker = game_stack->stackA;
-	int index;
-	int stack_length = get_stack_length(game_stack->stackA);
-	while(current_tracker)
-	{
-		index = get_index_from_rank(game_stack->stackA, current_tracker->rank);
-		if (index == -1)
-		{
-			current_tracker = current_tracker->next;
-			continue;
-		}
+// void fill_latest_cost(t_stack * game_stack)
+// {
+// 	t_blob * current_tracker = game_stack->stackA;
+// 	int index;
+// 	int stack_length = get_stack_length(game_stack->stackA);
+// 	while(current_tracker)
+// 	{
+// 		index = get_index_from_rank(game_stack->stackA, current_tracker->rank);
+// 		if (index == -1)
+// 		{
+// 			current_tracker = current_tracker->next;
+// 			continue;
+// 		}
 
 
 		
-		if (index < stack_length / 2)
-			current_tracker->cost = index;
-		else
-			current_tracker->cost = stack_length - index;
-		// if (get_index_from_rank(game_stack->stackA, current_tracker->rank_index) < get_stack_length(game_stack->stackA)/2)
-		// 	current_tracker->cost = get_index_from_rank(game_stack->stackA, current_tracker->rank_index);
-		// else
-		// 	current_tracker->cost = get_stack_length(game_stack->stackA) - get_index_from_rank(game_stack->stackA, current_tracker->rank_index);
-		current_tracker = current_tracker->next;
-	}
-	current_tracker=NULL;
-}
+// 		if (index < stack_length / 2)
+// 			current_tracker->cost = index;
+// 		else
+// 			current_tracker->cost = stack_length - index;
+// 		// if (get_index_from_rank(game_stack->stackA, current_tracker->rank_index) < get_stack_length(game_stack->stackA)/2)
+// 		// 	current_tracker->cost = get_index_from_rank(game_stack->stackA, current_tracker->rank_index);
+// 		// else
+// 		// 	current_tracker->cost = get_stack_length(game_stack->stackA) - get_index_from_rank(game_stack->stackA, current_tracker->rank_index);
+// 		current_tracker = current_tracker->next;
+// 	}
+// 	current_tracker=NULL;
+// }
 
 
 

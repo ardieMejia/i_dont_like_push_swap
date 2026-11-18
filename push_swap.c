@@ -137,7 +137,7 @@ t_stack * create_game_stack(int * list_of_numbers, int length)
 	game_stack->list_of_operations = NULL;
 	fill_stack_values(game_stack, list_of_numbers, length);
 
-	fill_latest_cost(game_stack);
+	// fill_latest_cost(game_stack);
 	fill_rank(game_stack);
 	return game_stack;
 	

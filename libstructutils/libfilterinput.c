@@ -215,7 +215,7 @@ int process_valid_input(int argc, char ** argv, int * number_input_start, t_meth
 		// write(1,"Error\n",6);
 		return 0;
 	}
-	// int number_input_start = 1;
+
 	if (argc > 1){
 
 		if (!is_first_arg_number(argc, argv))

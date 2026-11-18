@@ -107,7 +107,7 @@ int pa(t_stack * game_stack)
 
 	temp_blob = NULL;
 	
-	game_stack->list_of_operations = ft_strjoin(game_stack->list_of_operations, "pb\n");
+	game_stack->list_of_operations = ft_strjoin(game_stack->list_of_operations, "pa\n");
 	return 0;
 
 }

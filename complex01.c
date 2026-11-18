@@ -44,27 +44,27 @@ int	get_max_bit(int	size)
 	return (count);
 }
 
-// static void assign_indexes(t_stack *game_stack)
-// {
-// 	t_blob	current;
-// 	t_blob	runner;
-// 	int	id;
+static void assign_indexes(t_stack *game_stack)
+{
+	t_blob	* current;
+	t_blob	* runner;
+	int	id;
 	
-// 	current =  game_stack->stackA;
-// 	while (current)
-// 	{
-// 		id = 0;
-// 		runner = game_stack->stackA;
-// 		while (runner)
-// 		{
-// 			if (current -> value > runner -> value)
-// 				id++;
-// 			runner = runner -> next;
-// 		}
-// 		current -> rank = id;
-// 		current = current -> next;
-// 	}
-// }
+	current =  game_stack->stackA;
+	while (current)
+	{
+		id = 0;
+		runner = game_stack->stackA;
+		while (runner)
+		{
+			if (current -> value > runner -> value)
+				id++;
+			runner = runner -> next;
+		}
+		current -> rank = id;
+		current = current -> next;
+	}
+}
 
 void radix_sort(t_stack *game_stack)
 {
@@ -76,7 +76,7 @@ void radix_sort(t_stack *game_stack)
 	if (!(game_stack -> stackA) || !((game_stack -> stackA) ))
 		return ;
 	
-	// assign_indexes((game_stack -> stackA));
+	assign_indexes(game_stack);
 	max_bits = get_max_bit(get_stack_length(game_stack->stackA));
 		// ft_lstsize(game_stack -> stackA));
 	// size = ft_lstsize(game_stack->stackA);
