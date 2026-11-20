@@ -25,34 +25,34 @@
 // char * filter_arguments(char ** filtered_input, int * method, char ** argc, int argv){
 
 
-int is_method(char * maybe_option, t_method * method){
-	int result = 1;
+// int is_method(char * maybe_option, t_method * method){
+// 	int result = 1;
 
-	if (ft_strncmp(maybe_option, "--simple", 8))
-		*method = SIMPLE;
-	else if (ft_strncmp(maybe_option, "--medium", 8))
-		*method = MEDIUM;
-	else if (ft_strncmp(maybe_option, "--complex", 9))
-		*method = COMPLEX;
-	else if (ft_strncmp(maybe_option, "--adaptive", 10))
-		*method = ADAPTIVE;
-	else
-		result = 0;
-	return result;
-}
+// 	if (ft_strncmp(maybe_option, "--simple", 8))
+// 		*method = SIMPLE;
+// 	else if (ft_strncmp(maybe_option, "--medium", 8))
+// 		*method = MEDIUM;
+// 	else if (ft_strncmp(maybe_option, "--complex", 9))
+// 		*method = COMPLEX;
+// 	else if (ft_strncmp(maybe_option, "--adaptive", 10))
+// 		*method = ADAPTIVE;
+// 	else
+// 		result = 0;
+// 	return result;
+// }
 
-int is_argument_numbers(char ** the_rest, int argc)
-{
-	int length = argc - 2;
-	int i = 0;
-	int * array_of_numbers = malloc(sizeof(int) * length );
-	while(i < length - 1){
-		array_of_numbers[i] = ft_atoi(*the_rest);
-		the_rest++;
-		i++;
-	}
-	return 0;
-}
+// int is_argument_numbers(char ** the_rest, int argc)
+// {
+// 	int length = argc - 2;
+// 	int i = 0;
+// 	int * array_of_numbers = malloc(sizeof(int) * length );
+// 	while(i < length - 1){
+// 		array_of_numbers[i] = ft_atoi(*the_rest);
+// 		the_rest++;
+// 		i++;
+// 	}
+// 	return 0;
+// }
 
 
 
@@ -92,47 +92,47 @@ int is_all_numbers(char ** snipped_argv, int ** list_of_numbers, int length){
 }
 
 
-int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, t_method *method)
-{
-	char * maybe_option = arguments[1];
-	char * found = NULL;
+// int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, t_method *method)
+// {
+// 	char * maybe_option = arguments[1];
+// 	char * found = NULL;
 
 
 
 
 
-	// *filtered_input = ft_strdup("5 4 3 2 1 10 9 6 7 8");
+// 	// *filtered_input = ft_strdup("5 4 3 2 1 10 9 6 7 8");
 
 
-	if (is_method(maybe_option, method)){
-		arguments++;
-		(*argc)--;
-	}
-
-
-
-	*list_of_numbers = (int * )malloc(sizeof(int) * *argc);
+// 	if (is_method(maybe_option, method)){
+// 		arguments++;
+// 		(*argc)--;
+// 	}
 
 
 
-	maybe_option = NULL;
+// 	*list_of_numbers = (int * )malloc(sizeof(int) * *argc);
 
 
 
-	if (!is_all_numbers(arguments, list_of_numbers, *argc))
-		return 0;
+// 	maybe_option = NULL;
+
+
+
+// 	if (!is_all_numbers(arguments, list_of_numbers, *argc))
+// 		return 0;
 		
 
-	return 1;
+// 	return 1;
 
 	
 	
 
 	
-	// return found;
+// 	// return found;
 
 
-}
+// }
 
 
 
@@ -157,19 +157,19 @@ int is_valid_input(int *argc, char ** arguments, int ** list_of_numbers, t_metho
 // 	return 0;
 // }
 
-int is_valid_option_string(char * flag, t_method * method){
+int is_valid_option_string(t_stack * game_stack, char * flag){
 	int result = 1;
 
 	if (!ft_strncmp(flag, "--simple", 9))
-		*method = SIMPLE;
+		game_stack->method = SIMPLE;
 	else if (!ft_strncmp(flag, "--medium", 9))
-		*method = MEDIUM;
+		game_stack->method = MEDIUM;
 	else if (!ft_strncmp(flag, "--complex", 10))
-		*method = COMPLEX;
+		game_stack->method = COMPLEX;
 	else if (!ft_strncmp(flag, "--adaptive", 11))
-		*method = ADAPTIVE;
+		game_stack->method = ADAPTIVE;
 	else if (!ft_strncmp(flag, "--bench", 8))
-		*method = BENCH;
+		game_stack->method = BENCH;
 	else
 		result = 0;
 	return result;
@@ -189,25 +189,25 @@ int is_second_arg_number(int argc, char ** argv)
 	return 1;
 }
 
-int process_first_arg_if_valid(int argc, char ** argv, t_method * method)
+int process_first_arg_if_valid(t_stack * game_stack, int argc, char ** argv)
 {
-	if(!is_valid_option_string(argv[1], method))
+	if(!is_valid_option_string(game_stack, argv[1]))
 	{
 		return 0;
 	}
 	return 1;
 }
 
-int process_second_arg_if_valid(int argc, char ** argv, t_method * method)
+int process_second_arg_if_valid(t_stack * game_stack, int argc, char ** argv)
 {       	
-	if(!is_valid_option_string(argv[2], method))
+	if(!is_valid_option_string(game_stack, argv[2]))
 	{
 		return 0;
 	}
 	return 1;
 }
 
-int process_valid_input(int argc, char ** argv, int * number_input_start, t_method * method)
+int process_valid_input(t_stack * game_stack, int argc, char ** argv, int * number_input_start)
 {
 	int i = 1;
 	t_method temp_method = ADAPTIVE;
@@ -220,31 +220,34 @@ int process_valid_input(int argc, char ** argv, int * number_input_start, t_meth
 
 		if (!is_first_arg_number(argc, argv))
 		{
-			if(!process_first_arg_if_valid(argc, argv, method)){
+			if(!process_first_arg_if_valid(game_stack, argc, argv)){
 				return 0;
 			}
 			else
 				(*number_input_start)++;
 		}
-		if (*method == BENCH){
-			printf("\n bench turned on\n");			
+		if (game_stack->method == BENCH){
+			printf("\n bench turned on\n");
+			game_stack->bench = true;
 		}
 		else
-			temp_method = *method;
+			temp_method = game_stack->method;
 		if (argc > 2 && !is_second_arg_number(argc, argv))
 		{
-			if(!process_second_arg_if_valid(argc, argv, method)){
+			if(!process_second_arg_if_valid(game_stack, argc, argv)){
 				return 0;
 			}
 			else
 				(*number_input_start)++;
 		}
-		if (*method == BENCH)
+		if (game_stack->method == BENCH){			
 			printf("\n bench turned on\n");
+			game_stack->bench = true;
+		}
 		else
-			temp_method = *method;
+			temp_method = game_stack->method;
 
-		*method = temp_method;
+		game_stack->method = temp_method;
 		
 
 	}
@@ -266,6 +269,6 @@ int process_valid_input(int argc, char ** argv, int * number_input_start, t_meth
 		i++;
 	}
 	
-	printf("\n method: %d\n", *method);
+	printf("\n method: %d\n", game_stack->method);
 	return 1;
 }

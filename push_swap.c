@@ -128,31 +128,48 @@ void fill_rank(t_stack * game_stack)
 
 
 
-t_stack * create_game_stack(int * list_of_numbers, int length)
+void fill_game_stack(t_stack * game_stack, int * list_of_numbers, int length)
 
 {
-	t_stack *game_stack;
+	// t_stack *game_stack;
 		
-	game_stack = init_stack();
+	// game_stack = init_stack();
 	game_stack->list_of_operations = NULL;
 	fill_stack_values(game_stack, list_of_numbers, length);
 
 	// fill_latest_cost(game_stack);
 	fill_rank(game_stack);
-	return game_stack;
+	// return game_stack;
 	
 }
 
-void get_method_from_disorder(float computed_value, t_method * method){
+void get_method_from_disorder(t_stack * game_stack, float computed_value){
 	printf("computed disorder: %f", computed_value);
 	if (computed_value < 0.2){
-		*method = SIMPLE;
+		game_stack->method = SIMPLE;
 	}else if (computed_value < 0.5){
-		*method = MEDIUM;
+		game_stack->method = MEDIUM;
 	}else
-		*method = COMPLEX;
+		game_stack->method = COMPLEX;
 	
 }
+
+
+void adaptive_start(t_stack * game_stack){
+
+	if(game_stack->method == SIMPLE){
+		printf("\n simple\n");
+		start_simple(game_stack);
+	}else if(game_stack->method == MEDIUM){
+		printf("\n medium\n");
+		start_medium(game_stack);
+	}
+	else if(game_stack->method == COMPLEX){
+		radix_sort(game_stack);
+		printf("\n complex\n");
+	}
+}
+
 
 float compute_disorder(t_stack * game_stack){
 	int mistakes = 0;
@@ -190,10 +207,16 @@ int main (int argc, char **argv){
 
 
 
+	t_stack *game_stack;
+	// ft_bzero(&game_stack, sizeof(t_stack));
+	game_stack = init_stack();
 
-	t_method method;
+	// 	free_game(game_stack);
+	// return 0;
+	game_stack->bench = false;
+	game_stack->method = ADAPTIVE;
 
-	method = ADAPTIVE;
+
 	char * filtered_input = NULL;
 
 	int * list_of_numbers;
@@ -207,7 +230,7 @@ int main (int argc, char **argv){
 
 	int number_input_start = 1;
 
-	if(!process_valid_input(argc, argv, &number_input_start, &method))
+	if(!process_valid_input(game_stack, argc, argv, &number_input_start))
 	{
 		write(1,"Error\n",6);
 		return 1;
@@ -225,32 +248,33 @@ int main (int argc, char **argv){
 		return 1;
 
 	}
-	t_stack * game_stack = create_game_stack(list_of_numbers, argc - number_input_start);
+	fill_game_stack(game_stack, list_of_numbers, argc - number_input_start);
 
 
 	float computed_disorder = compute_disorder(game_stack);
 	
 
 
-	if(method == SIMPLE){
+	if(game_stack->method == SIMPLE){
 		printf("\n simple\n");
 		start_simple(game_stack);
-	}else if(method == MEDIUM){
+	}else if(game_stack->method == MEDIUM){
 		start_medium(game_stack);
 	}
-	else if(method == COMPLEX){
+	else if(game_stack->method == COMPLEX){
 		radix_sort(game_stack);
 		printf("\n complex\n");
 	}
-	else if(method == ADAPTIVE)
+	else if(game_stack->method == ADAPTIVE)
 	{
-		get_method_from_disorder(computed_disorder, &method);
+		get_method_from_disorder(game_stack, computed_disorder);
+		adaptive_start(game_stack);
 		printf("\n adaptive\n");
-		free(filtered_input);
-		free(list_of_numbers);
-		list_of_numbers = NULL;
-		free_game(game_stack);
-		return 0;
+		// free(filtered_input);
+		// free(list_of_numbers);
+		// list_of_numbers = NULL;
+		// free_game(game_stack);
+		// return 0;
 	}
 	else
 		return 1;

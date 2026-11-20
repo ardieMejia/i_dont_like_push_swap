@@ -33,6 +33,7 @@ typedef struct s_stack
     struct s_blob *stackB;
     char * list_of_operations;
     bool bench;
+    t_method method;
 }t_stack;
 
 t_stack * init_stack();
