@@ -30,20 +30,20 @@ void display_state_output(t_stack * game_stack)
 	char * value_b;
 	int i = 0;
 	printf("=====\n");
-	size_a = get_stack_length(game_stack->A);
-	size_b = get_stack_length(game_stack->B);
+	size_a = get_stack_length(game_stack->a);
+	size_b = get_stack_length(game_stack->b);
 	int biggest = size_a;
 	if (size_b > size_a)  biggest = size_b;
 	while(i < biggest)
 	{
-		// get_at_i_aschar(game_stack->A, value_a, i);
-		// get_at_i_aschar(game_stack->B, value_b, i);
+		// get_at_i_aschar(game_stack->a, value_a, i);
+		// get_at_i_aschar(game_stack->b, value_b, i);
 		if (i < size_a)
-			value_a = ft_itoa(get_value_from_index(game_stack->A, i));
+			value_a = ft_itoa(get_value_from_index(game_stack->a, i));
 		else
 			value_a = ft_strdup(" ");
 		if (i < size_b)
-			value_b = ft_itoa(get_value_from_index(game_stack->B, i));
+			value_b = ft_itoa(get_value_from_index(game_stack->b, i));
 		else
 			value_b = ft_strdup(" ");
 

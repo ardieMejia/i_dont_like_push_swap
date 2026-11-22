@@ -9,17 +9,17 @@
 
 
 int ra(t_stack * game_stack){
-	if (!game_stack->A)
+	if (!game_stack->a)
 		return 1;
-	if (get_stack_length(game_stack->A) == 1)
+	if (get_stack_length(game_stack->a) == 1)
 		return 0;
 	
-	t_blob * old_head = game_stack->A;
-	t_blob * new_head = game_stack->A->next;
-	t_blob * last_blob = get_last_blob(game_stack->A);
+	t_blob * old_head = game_stack->a;
+	t_blob * new_head = game_stack->a->next;
+	t_blob * last_blob = get_last_blob(game_stack->a);
 	last_blob->next = old_head;
 	old_head->next = NULL;
-	game_stack->A = new_head;
+	game_stack->a = new_head;
 
 	
 	game_stack->list_of_operations = ft_strjoin(game_stack->list_of_operations, "ra\n");
@@ -33,14 +33,14 @@ int ra(t_stack * game_stack){
 }
 
 int rrb(t_stack * game_stack){
-	if (!game_stack->B){
+	if (!game_stack->b){
 		return 1;
 	}
 
-	t_blob * temp_last_blob = get_last_blob(game_stack->B);
-	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->B);
-	temp_last_blob->next = game_stack->B;
-	game_stack->B = temp_last_blob;
+	t_blob * temp_last_blob = get_last_blob(game_stack->b);
+	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->b);
+	temp_last_blob->next = game_stack->b;
+	game_stack->b = temp_last_blob;
 	temp_next_to_last_blob->next = NULL;
 
 	// char *temp_list_of_operations = ft_strjoin(game_stack->list_of_operations, "rrb\n");
@@ -56,14 +56,14 @@ int rrb(t_stack * game_stack){
 
 
 int rra(t_stack * game_stack){
-	if (!game_stack->A){
+	if (!game_stack->a){
 		return 1;
 	}
 
-	t_blob * temp_last_blob = get_last_blob(game_stack->A);
-	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->A);
-	temp_last_blob->next = game_stack->A;
-	game_stack->A = temp_last_blob;
+	t_blob * temp_last_blob = get_last_blob(game_stack->a);
+	t_blob * temp_next_to_last_blob = get_next_to_last_blob(game_stack->a);
+	temp_last_blob->next = game_stack->a;
+	game_stack->a = temp_last_blob;
 	temp_next_to_last_blob->next = NULL;
 
 	char *temp_list_of_operations = ft_strjoin(game_stack->list_of_operations, "rra\n");
@@ -78,14 +78,14 @@ int rra(t_stack * game_stack){
 
 int pb(t_stack * game_stack)
 {
-	if (!game_stack->A){
+	if (!game_stack->a){
 		return 1;
 	}
 
-	t_blob * temp_blob = game_stack->A;
-	game_stack->A = game_stack->A->next;
-	temp_blob->next = game_stack->B;
-	game_stack->B = temp_blob;
+	t_blob * temp_blob = game_stack->a;
+	game_stack->a = game_stack->a->next;
+	temp_blob->next = game_stack->b;
+	game_stack->b = temp_blob;
 
 	temp_blob = NULL;
 	
@@ -96,14 +96,14 @@ int pb(t_stack * game_stack)
 
 int pa(t_stack * game_stack)
 {
-	if (!game_stack->B){
+	if (!game_stack->b){
 		return 1;
 	}
 
-	t_blob * temp_blob = game_stack->B;
-	game_stack->B = game_stack->B->next;
-	temp_blob->next = game_stack->A;
-	game_stack->A = temp_blob;
+	t_blob * temp_blob = game_stack->b;
+	game_stack->b = game_stack->b->next;
+	temp_blob->next = game_stack->a;
+	game_stack->a = temp_blob;
 
 	temp_blob = NULL;
 	
@@ -113,17 +113,17 @@ int pa(t_stack * game_stack)
 }
 
 int rb(t_stack * game_stack){
-	if (!game_stack->B)
+	if (!game_stack->b)
 		return 1;
-	if (get_stack_length(game_stack->B) == 1)
+	if (get_stack_length(game_stack->b) == 1)
 		return 0;
 	
-	t_blob * old_head = game_stack->B;
-	t_blob * new_head = game_stack->B->next;
-	t_blob * last_blob = get_last_blob(game_stack->B);
+	t_blob * old_head = game_stack->b;
+	t_blob * new_head = game_stack->b->next;
+	t_blob * last_blob = get_last_blob(game_stack->b);
 	last_blob->next = old_head;
 	old_head->next = NULL;
-	game_stack->B = new_head;
+	game_stack->b = new_head;
 
 
 	game_stack->list_of_operations = ft_strjoin(game_stack->list_of_operations, "rb\n");
@@ -138,13 +138,13 @@ int rb(t_stack * game_stack){
 
 
 int sa(t_stack * game_stack){
-	if (get_stack_length(game_stack->A) < 2)
+	if (get_stack_length(game_stack->a) < 2)
 		return 1;
-	t_blob * new_head = game_stack->A->next;
+	t_blob * new_head = game_stack->a->next;
 	
-	game_stack->A->next = new_head->next;
-	new_head->next = game_stack->A;
-	game_stack->A = new_head;
+	game_stack->a->next = new_head->next;
+	new_head->next = game_stack->a;
+	game_stack->a = new_head;
 	
 	new_head = NULL;
 	return 0;

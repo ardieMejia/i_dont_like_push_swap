@@ -13,7 +13,7 @@
 
 int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 {
-	int size = get_stack_length(game_stack->A);
+	int size = get_stack_length(game_stack->a);
 	int moved = 0;
 	printf("\n szie %d\n", size);
 	printf("\n chunk_end %d\n", chunk_end);
@@ -22,7 +22,7 @@ int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 
 	while(moved < total_to_push)
 	{
-		rank_at_top = get_rank_from_position(game_stack->A, 0);
+		rank_at_top = get_rank_from_position(game_stack->a, 0);
 		printf("\n rank_at_top %d\n", rank_at_top);
 		if(rank_at_top > chunk_end){
 			ra(game_stack);
@@ -32,7 +32,7 @@ int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 				rb(game_stack);
 			moved++;
 		}
-		size = get_stack_length(game_stack->A);
+		size = get_stack_length(game_stack->a);
 	}
 	return 0;
 }
@@ -40,7 +40,7 @@ int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 
 void simple_while_more_than_0(t_stack * game_stack)
 {
-	int size = get_stack_length(game_stack->A);
+	int size = get_stack_length(game_stack->a);
 	int chunk_count = 5;
 	int chunk_size;
 	chunk_size = 5;
@@ -66,10 +66,10 @@ void simple_while_more_than_0(t_stack * game_stack)
 void simple_push_stupidly_back_a(t_stack * game_stack){
 	int current_rank;
 	int position;
-	current_rank = get_stack_length(game_stack->B) - 1;
+	current_rank = get_stack_length(game_stack->b) - 1;
 	// int i = 0;
 	while(current_rank > -1){
-		   position = get_index_from_rank(game_stack->B, current_rank);
+		   position = get_index_from_rank(game_stack->b, current_rank);
 
         if (position == -1)
         {
@@ -80,13 +80,13 @@ void simple_push_stupidly_back_a(t_stack * game_stack){
 
         while (position != 0)
         {
-            if (position < get_stack_length(game_stack->B) / 2)
+            if (position < get_stack_length(game_stack->b) / 2)
                 rb(game_stack);
             else
                 rrb(game_stack);
 
             position = get_index_from_rank(
-                game_stack->B, current_rank);
+                game_stack->b, current_rank);
 
             if (position == -1)
             {

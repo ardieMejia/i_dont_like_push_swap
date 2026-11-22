@@ -10,18 +10,18 @@
 
 
 static int first(t_stack * game_stack){
-	return game_stack->stackA->rank;
+	return game_stack->a->rank;
 }
 static int second(t_stack * game_stack){
-	return game_stack->stackA->next->rank;
+	return game_stack->a->next->rank;
 }
 
 static int third(t_stack * game_stack){
-	return game_stack->stackA->next->next->rank;
+	return game_stack->a->next->next->rank;
 }
 
 int process_sort_3(t_stack * game_stack){
-	if(get_stack_length(game_stack->stackA) != 3)
+	if(get_stack_length(game_stack->a) != 3)
 		return 0;
 		
 	if (first(game_stack) > second(game_stack)

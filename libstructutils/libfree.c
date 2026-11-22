@@ -19,8 +19,8 @@ void free_split_string(char ** split_string){
 }
 
 void free_game(t_stack *game_stack){
-	t_blob * tracker = game_stack->A;
-	t_blob * current = game_stack->A;
+	t_blob * tracker = game_stack->a;
+	t_blob * current = game_stack->a;
 	
 	while(tracker){
 		tracker=current->next;
@@ -28,8 +28,8 @@ void free_game(t_stack *game_stack){
 		current=tracker;
 	}
 	
-	tracker = game_stack->B;
-	current = game_stack->B;
+	tracker = game_stack->b;
+	current = game_stack->b;
 	
 	while(tracker){
 		tracker=current->next;

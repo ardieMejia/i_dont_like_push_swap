@@ -29,8 +29,8 @@ typedef struct s_blob
 
 typedef struct s_stack
 {
-    struct s_blob *A;
-    struct s_blob *B;
+    struct s_blob *a;
+    struct s_blob *b;
     char * list_of_operations;
     bool bench;
     t_method method;

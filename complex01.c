@@ -50,11 +50,11 @@ static void assign_indexes(t_stack *game_stack)
 	t_blob	* runner;
 	int	id;
 	
-	current =  game_stack->A;
+	current =  game_stack->a;
 	while (current)
 	{
 		id = 0;
-		runner = game_stack->A;
+		runner = game_stack->a;
 		while (runner)
 		{
 			if (current -> value > runner -> value)
@@ -73,27 +73,27 @@ void radix_sort(t_stack *game_stack)
 	int	i;
 	int	j;
 
-	if (!(game_stack -> A) || !((game_stack -> A) ))
+	if (!(game_stack -> a) || !((game_stack -> a) ))
 		return ;
 	
 	assign_indexes(game_stack);
-	max_bits = get_max_bit(get_stack_length(game_stack->A));
-		// ft_lstsize(game_stack -> A));
-	// size = ft_lstsize(game_stack->A);
-	size = get_stack_length(game_stack->A);
+	max_bits = get_max_bit(get_stack_length(game_stack->a));
+		// ft_lstsize(game_stack -> a));
+	// size = ft_lstsize(game_stack->a);
+	size = get_stack_length(game_stack->a);
 	i = 0;
 	while (i < max_bits)
 	{
 		j = 0;
 		while (j < size)
 		{
-			if(((game_stack -> A)  -> rank >> i) & 1)
+			if(((game_stack -> a)  -> rank >> i) & 1)
 				ra(game_stack);
 			else
 				pb(game_stack);
 			j++;
 		}
-		while ((game_stack -> B) )
+		while ((game_stack -> b) )
 			pa(game_stack);
 		i++;
 	}
