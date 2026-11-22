@@ -44,7 +44,8 @@ ft_lstadd_back.o \
 ft_lstdelone.o \
 ft_lstclear.o \
 ft_lstiter.o \
-ft_lstmap.o
+ft_lstmap.o \
+ft_ftoa.o
 
 all: $(OBJ)
 	ar rc $(NAME) $(OBJ) 

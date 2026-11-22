@@ -35,36 +35,183 @@ void base_swap(int * a, int * b){
 }
 
 
+void count_assemble_operations_1(t_stack * game_stack, char ** bench_op_string){
 
-
-
-
-void display_stack_operations(char * list_of_operations){
-
-
-	// char * test = strdup("hallsd\nlsd");
-	// char * test = ft_strdup("hallsd\nlsd");
+		char * sa = ft_itoa(game_stack->op_count.sa);
+		char * sb =	ft_itoa(game_stack->op_count.sb);
+		char * ss = ft_itoa(game_stack->op_count.ss);
+		char * pa = ft_itoa(game_stack->op_count.pa);
+		char * pb = ft_itoa(game_stack->op_count.pb);
 
 	
+	
+	*bench_op_string = ft_strjoin(*bench_op_string, " sa: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, sa);
+	*bench_op_string = ft_strjoin(*bench_op_string, " sb: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, sb);
+	*bench_op_string = ft_strjoin(*bench_op_string, " ss: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, ss);
+	*bench_op_string = ft_strjoin(*bench_op_string, " pa: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, pa);
+	*bench_op_string = ft_strjoin(*bench_op_string, " pb: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, pb);
+	*bench_op_string = ft_strjoin(*bench_op_string, "\n");
+	free(sa);
+	free(sb);
+	free(ss);
+	free(pa);
+	free(pb);
 
-	// list_of_operations[2] = 's';
+	
+}
 
-	// write(int __fd, const void *__buf, size_t __n);
-	write(0,list_of_operations , ft_strlen(list_of_operations));
+void count_assemble_operations_2(t_stack * game_stack, char ** bench_op_string){
 		
+		char * ra = ft_itoa(game_stack->op_count.ra);
+		char * rb = ft_itoa(game_stack->op_count.rb);
+		char * rr = ft_itoa(game_stack->op_count.rr);
+		char * rra = ft_itoa(game_stack->op_count.rra);
+
+			
+		*bench_op_string = ft_strjoin(*bench_op_string, " ra: ");
+		*bench_op_string = ft_strjoin(*bench_op_string, ra );
+		*bench_op_string = ft_strjoin(*bench_op_string, " rb: ");
+		*bench_op_string = ft_strjoin(*bench_op_string, rb );
+		*bench_op_string = ft_strjoin(*bench_op_string, " rr: ");
+		*bench_op_string = ft_strjoin(*bench_op_string, rr );
+		*bench_op_string = ft_strjoin(*bench_op_string, " rra: ");
+		*bench_op_string = ft_strjoin(*bench_op_string, rra );
+
+
+
+		free(ra);
+		free(rb);
+		free(rr);
+		free(rra);
+
+}
+void count_assemble_operations_3(t_stack * game_stack, char ** bench_op_string){
+		
+		char * rrb = ft_itoa(game_stack->op_count.rrb);
+		char * rrr = ft_itoa(game_stack->op_count.rrr);
+			
+	*bench_op_string = ft_strjoin(*bench_op_string, " rrb: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, rrb );
+	*bench_op_string = ft_strjoin(*bench_op_string, " rrr: ");
+	*bench_op_string = ft_strjoin(*bench_op_string, rrr );
+	*bench_op_string = ft_strjoin(*bench_op_string, "\n" );
+
+
+			free(rrb);
+
+
+			free(rrr);
+
+}
+
+
+char * bench_method_string_1(t_stack * game_stack){
+		char * return_string;
+
+		
+	if (game_stack->adaptive_on)
+	{
+		return_string = ft_strdup("Adaptive / ");
+		return return_string;
+	}
+	else if (game_stack->method == SIMPLE)
+	{
+		return_string = ft_strdup("Simple / ");
+		return return_string;
+	}
+	else if (game_stack->method == MEDIUM)
+	{
+		return_string = ft_strdup("Medium / ");
+		return return_string;
+	}
+	else if (game_stack->method == COMPLEX)
+	{
+		return_string = ft_strdup("Complex / ");
+		return return_string;
+	}
+	return_string = ft_strdup("");
+	return return_string;
+}
+
+char * bench_method_string_2(t_stack * game_stack){
+		char * return_string;
+
+		
+		if (game_stack->method == SIMPLE)
+		{
+				return_string = ft_strdup("0(n2)");
+				return return_string;
+		}
+		else if (game_stack->method == MEDIUM)
+		{
+				return_string = ft_strdup("0(n/n)");
+				return return_string;
+		}
+		else if (game_stack->method == COMPLEX)
+		{
+				return ft_strdup("0(nlogn)");
+				return return_string;
+		}
+		return_string = ft_strdup("");	
+		return return_string;
 }
 
 
 
+void assemble_string(t_stack *game_stack, char ** bench_string){
 
 
+		char * computed_disorder;
+		char * s_bench_method_string_1 = bench_method_string_1(game_stack);
+		char * s_bench_method_string_2 = bench_method_string_2(game_stack);
+
+		computed_disorder = ft_ftoa(game_stack->computed_disorder);
+		char * bench_op_string = ft_strdup("");
+	
+		*bench_string = ft_strjoin(*bench_string, "[bench] disorder: ");
+		*bench_string = ft_strjoin(*bench_string,  computed_disorder);
+		*bench_string = ft_strjoin(*bench_string, "%\n");
+		*bench_string = ft_strjoin(*bench_string, "[bench] strategy: ");
+		*bench_string = ft_strjoin(*bench_string, s_bench_method_string_1);
+		*bench_string = ft_strjoin(*bench_string, s_bench_method_string_2);
+		*bench_string = ft_strjoin(*bench_string, "[bench] total_ops: 5000\n");
+		// bench_op_string =
+		*bench_string = ft_strjoin(*bench_string, "[bench] ");
+		count_assemble_operations_1(game_stack, &bench_op_string);
+		*bench_string = ft_strjoin(*bench_string, bench_op_string);
+		free(bench_op_string);
+		bench_op_string = ft_strdup("");
+
+		*bench_string = ft_strjoin(*bench_string, "[bench] ");
+		count_assemble_operations_2(game_stack, &bench_op_string);
+		count_assemble_operations_3(game_stack, &bench_op_string);
+		*bench_string = ft_strjoin(*bench_string, bench_op_string);
 
 
+		free(s_bench_method_string_1);
+		free(s_bench_method_string_2);
+		free(bench_op_string);
+		free(computed_disorder);
+	
+}
 
+void create_display_bench_string(t_stack *game_stack){
+	char * bench_string = ft_strdup("helo theere");
+	
+	assemble_string(game_stack, &bench_string);
+	write(0,bench_string , ft_strlen(bench_string));
+	free(bench_string);
+	      
+}
 
-
-
-
+void display_stack_operations(char * list_of_operations){
+	write(2,list_of_operations , ft_strlen(list_of_operations));
+}
 
 
 void fill_rank(t_stack * game_stack)
@@ -143,11 +290,11 @@ void fill_game_stack(t_stack * game_stack, int * list_of_numbers, int length)
 	
 }
 
-void get_method_from_disorder(t_stack * game_stack, float computed_value){
-	printf("computed disorder: %f", computed_value);
-	if (computed_value < 0.2){
+void get_method_from_disorder(t_stack * game_stack){
+	printf("computed disorder: %f", game_stack->computed_disorder);
+	if (game_stack->computed_disorder < 0.2){
 		game_stack->method = SIMPLE;
-	}else if (computed_value < 0.5){
+	}else if (game_stack->computed_disorder < 0.5){
 		game_stack->method = MEDIUM;
 	}else
 		game_stack->method = COMPLEX;
@@ -156,7 +303,7 @@ void get_method_from_disorder(t_stack * game_stack, float computed_value){
 
 
 void adaptive_start(t_stack * game_stack){
-
+	game_stack->adaptive_on = true;
 	if(game_stack->method == SIMPLE){
 		printf("\n simple\n");
 		start_simple(game_stack);
@@ -171,7 +318,7 @@ void adaptive_start(t_stack * game_stack){
 }
 
 
-float compute_disorder(t_stack * game_stack){
+void compute_disorder(t_stack * game_stack){
 	int mistakes = 0;
 	int total_pairs = 0;
 	int i = 0;
@@ -195,7 +342,7 @@ float compute_disorder(t_stack * game_stack){
 	// float answer = (float)dividend / (float)divisor;
 
 
-	return (float)mistakes/(float)total_pairs;
+	game_stack->computed_disorder = (float)mistakes/(float)total_pairs;
 
 
 }
@@ -214,6 +361,7 @@ int main (int argc, char **argv){
 	// 	free_game(game_stack);
 	// return 0;
 	game_stack->bench = false;
+	game_stack->adaptive_on = false;
 	game_stack->method = ADAPTIVE;
 
 
@@ -251,7 +399,7 @@ int main (int argc, char **argv){
 	fill_game_stack(game_stack, list_of_numbers, argc - number_input_start);
 
 
-	float computed_disorder = compute_disorder(game_stack);
+	compute_disorder(game_stack);
 	
 
 
@@ -267,9 +415,10 @@ int main (int argc, char **argv){
 	}
 	else if(game_stack->method == ADAPTIVE)
 	{
-		get_method_from_disorder(game_stack, computed_disorder);
+		get_method_from_disorder(game_stack);
 		adaptive_start(game_stack);
 		printf("\n adaptive\n");
+		create_display_bench_string(game_stack);
 		// free(filtered_input);
 		// free(list_of_numbers);
 		// list_of_numbers = NULL;

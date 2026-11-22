@@ -13,6 +13,21 @@ typedef enum  s_method{
     BENCH
 } t_method;
 
+typedef struct  s_op_count{
+    int sa;
+    int sb;
+    int ss;
+    int pa;
+    int pb;
+    int ra;
+    int rb;
+    int rr;
+    int rra;
+    int rrb;
+    int rrr;
+
+} t_op_count;
+
 
 
 
@@ -32,8 +47,12 @@ typedef struct s_stack
     struct s_blob *a;
     struct s_blob *b;
     char * list_of_operations;
-    bool bench;
+    // char * bench_string;
+    bool bench;    
+    bool adaptive_on;
     t_method method;
+    t_op_count op_count;
+    float computed_disorder;
 }t_stack;
 
 t_stack * init_stack();
