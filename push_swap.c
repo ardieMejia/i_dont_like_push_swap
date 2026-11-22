@@ -70,7 +70,7 @@ void display_stack_operations(char * list_of_operations){
 void fill_rank(t_stack * game_stack)
 {
 
-	int stack_a_length = get_stack_length(game_stack->stackA);
+	int stack_a_length = get_stack_length(game_stack->A);
 	int i ;
 	int j ;
 				  
@@ -80,7 +80,7 @@ void fill_rank(t_stack * game_stack)
 	// 	printf("\n temp_arrat %d\n", temp_array[0]);
 
 	i=0;
-	t_blob * current = game_stack->stackA;
+	t_blob * current = game_stack->A;
 	while(current){
 		temp_array[i] = current->value;
 		current = current->next;
@@ -102,10 +102,10 @@ void fill_rank(t_stack * game_stack)
 
 	i=0;
 	j=0;
-	current = game_stack->stackA;
+	current = game_stack->A;
 	while(i < stack_a_length)
 	{
-		current = game_stack->stackA;
+		current = game_stack->A;
 		while(current){
 			if(temp_array[i] == current->value)
 				current->rank = i ;
@@ -114,7 +114,7 @@ void fill_rank(t_stack * game_stack)
 		i++;
 	}
 
-	// printf("\n game_stack first rank (4 i think): %d\n", game_stack->stackA->rank_index);
+	// printf("\n game_stack first rank (4 i think): %d\n", game_stack->A->rank_index);
 	free(temp_array);
 }
 
@@ -176,14 +176,14 @@ float compute_disorder(t_stack * game_stack){
 	int total_pairs = 0;
 	int i = 0;
 	int j = 0;
-	int size = get_stack_length(game_stack->stackA);
+	int size = get_stack_length(game_stack->A);
 	while(i < size - 1){
 		j = i;
                 while (j < size - 1) {
                   total_pairs++;
                   j++;
-                  if (get_rank_from_position(game_stack->stackA, i) >
-                      get_rank_from_position(game_stack->stackA, j))
+                  if (get_rank_from_position(game_stack->A, i) >
+                      get_rank_from_position(game_stack->A, j))
                     mistakes++;
                 }
                 i++;

@@ -16,19 +16,19 @@ int get_stack_length(t_blob * stack){
 	return i;
 }
 
-t_blob * get_closest_candidate_from_A(t_blob * stackA, int rank_from_b){
-	t_blob * closest_candidate = stackA;
-	while(stackA){
-		if(stackA->rank < closest_candidate->rank && stackA->rank > rank_from_b)
-			closest_candidate = stackA;
-		stackA = stackA->next;
+t_blob * get_closest_candidate_from_A(t_blob * A, int rank_from_b){
+	t_blob * closest_candidate = A;
+	while(A){
+		if(A->rank < closest_candidate->rank && A->rank > rank_from_b)
+			closest_candidate = A;
+		A = A->next;
 	}
 	return closest_candidate;
 }
 
 // int get_lowest_cost(t_stack * game_stack, t_blob* candidate_from_A, t_blob* candidate_from_B)
 // {
-// 	// game_stack->stackA->value = 4;
+// 	// game_stack->A->value = 4;
 // 	// amount_to_calculate = 4;
 // 	// printf("\n amount to cauflate %d\n", amount_to_calculate);
 // 	// return 99;
@@ -36,11 +36,11 @@ t_blob * get_closest_candidate_from_A(t_blob * stackA, int rank_from_b){
 // 	int i = 0;
 // 	int combined_cost = 0;
 // 	int lowest_total_cost = INT_MAX;
-// 	int offset_to_search = get_stack_length(game_stack->stackB)/2;
-// 	t_blob * current_tracker = game_stack->stackB;
+// 	int offset_to_search = get_stack_length(game_stack->B)/2;
+// 	t_blob * current_tracker = game_stack->B;
 // 	int rank_lowest_cost_from_B = current_tracker->rank;
 // 	while(i < offset_to_search && !current_tracker){
-// 		candidate_from_A = get_closest_candidate_from_A(game_stack->stackA, current_tracker->rank);
+// 		candidate_from_A = get_closest_candidate_from_A(game_stack->A, current_tracker->rank);
 // 		combined_cost = candidate_from_A->cost + current_tracker->cost;
 // 		if (combined_cost < lowest_total_cost)
 // 			candidate_from_B = current_tracker;

@@ -40,10 +40,10 @@ void start_medium(t_stack * game_stack)
 		return;
 	
 
-	// if (game_stack->stackB)
-	// 	printf("\n test %d\n", game_stack->stackB->value);
+	// if (game_stack->B)
+	// 	printf("\n test %d\n", game_stack->B->value);
 	
-	int original_size = get_stack_length(game_stack->stackA);
+	int original_size = get_stack_length(game_stack->A);
 	int upper = original_size - 1;
 	int lower;
 	int number_of_buckets = get_less_than_sqrt(upper) / 2;
@@ -69,12 +69,12 @@ void start_medium(t_stack * game_stack)
 
 void push_current_upper_chunk_to_b(t_stack * game_stack, int lower, int upper)
 {
-	int size = get_stack_length(game_stack->stackA);
+	int size = get_stack_length(game_stack->A);
 	int rank_value_at_top;
 	printf("\n upper %d\n", upper);
 	printf("\n lower %d\n", lower);
 	while(size > 0){
-		rank_value_at_top = get_rank_from_position(game_stack->stackA, 0);
+		rank_value_at_top = get_rank_from_position(game_stack->A, 0);
 		if (rank_value_at_top >= lower && rank_value_at_top <= upper){
 			printf("\n gets pushed\n");
 			pb(game_stack);
@@ -98,16 +98,16 @@ void push_back_to_descending(t_stack * game_stack, int lower, int upper){
 
 
 	while(current_rank_value > lower){
-		if (get_index_from_rank(game_stack->stackB, current_rank_value) < 0)
+		if (get_index_from_rank(game_stack->B, current_rank_value) < 0)
 			return;
 		printf("\n curent rank value %d\n", current_rank_value);
-		if (get_index_from_rank(game_stack->stackB, current_rank_value) < get_stack_length(game_stack->stackB) / 2){			
-			while(get_index_from_rank(game_stack->stackB, current_rank_value) != 0)
+		if (get_index_from_rank(game_stack->B, current_rank_value) < get_stack_length(game_stack->B) / 2){			
+			while(get_index_from_rank(game_stack->B, current_rank_value) != 0)
 				rb(game_stack);
 
 		}
 		else
-			while(get_index_from_rank(game_stack->stackB, current_rank_value) != 0)
+			while(get_index_from_rank(game_stack->B, current_rank_value) != 0)
 				rrb(game_stack);
 		current_rank_value--;
 		pa(game_stack);
