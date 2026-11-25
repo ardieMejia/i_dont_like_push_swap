@@ -13,17 +13,17 @@
 
 int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 {
-	int size = get_stack_length(game_stack->a);
+	// int size = get_stack_length(game_stack->a);
 	int moved = 0;
-	printf("\n szie %d\n", size);
-	printf("\n chunk_end %d\n", chunk_end);
+	// printf("\n szie %d\n", size);
+	// printf("\n chunk_end %d\n", chunk_end);
 	int rank_at_top;
 	int total_to_push = chunk_end - chunk_start;
 
 	while(moved < total_to_push)
 	{
 		rank_at_top = get_rank_from_position(game_stack->a, 0);
-		printf("\n rank_at_top %d\n", rank_at_top);
+		// printf("\n rank_at_top %d\n", rank_at_top);
 		if(rank_at_top > chunk_end){
 			ra(game_stack);
 		}else{
@@ -32,7 +32,7 @@ int simple_pb_one_chunk(t_stack * game_stack, int chunk_start, int chunk_end)
 				rb(game_stack);
 			moved++;
 		}
-		size = get_stack_length(game_stack->a);
+		// size = get_stack_length(game_stack->a);
 	}
 	return 0;
 }
@@ -73,8 +73,8 @@ void simple_push_stupidly_back_a(t_stack * game_stack){
 
         if (position == -1)
         {
-            printf("Error: rankalized index %d not found in stack B\n",
-                current_rank);
+            // printf("Error: rankalized index %d not found in stack B\n",
+                // current_rank);
             return;
         }
 

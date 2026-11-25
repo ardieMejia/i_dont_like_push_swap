@@ -227,7 +227,7 @@ int process_valid_input(t_stack * game_stack, int argc, char ** argv, int * numb
 				(*number_input_start)++;
 		}
 		if (game_stack->method == BENCH){
-			printf("\n bench turned on\n");
+			// printf("\n bench turned on\n");
 			game_stack->bench = true;
 		}
 		else
@@ -241,7 +241,7 @@ int process_valid_input(t_stack * game_stack, int argc, char ** argv, int * numb
 				(*number_input_start)++;
 		}
 		if (game_stack->method == BENCH){			
-			printf("\n bench turned on\n");
+			// printf("\n bench turned on\n");
 			game_stack->bench = true;
 		}
 		else
@@ -251,24 +251,6 @@ int process_valid_input(t_stack * game_stack, int argc, char ** argv, int * numb
 		
 
 	}
-	i = *number_input_start;
 
-	char * current_string;
-
-
-	
-	while(i < argc){
-		current_string = argv[i];
-		while(*current_string){
-			if(!ft_isdigit(*current_string)){
-				return 0;
-			}
-			current_string++;
-		}
-		// (*list_of_numbers)[i] = ft_atoi(argv[i]);
-		i++;
-	}
-	
-	printf("\n method: %d\n", game_stack->method);
 	return 1;
 }

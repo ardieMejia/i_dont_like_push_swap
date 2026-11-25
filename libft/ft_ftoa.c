@@ -6,7 +6,7 @@
 /*   By: arwan <arwan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 10:18:59 by arwan             #+#    #+#             */
-//   Updated: 2026/11/25 11:53:17 by arwan            ###   ########.fr       //
+//   Updated: 2026/11/26 01:07:32 by arwan            ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_ftoa(float n)
 	char * s_integer_part;
 	char * s_fractional_part;
 	
-	printf("ORIGINAL FLOAT %f", n);
+	// printf("ORIGINAL FLOAT %f", n);
 
 	n = n*100;
 	int integer_part = (int)n;

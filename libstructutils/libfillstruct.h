@@ -25,6 +25,7 @@ typedef struct  s_op_count{
     int rra;
     int rrb;
     int rrr;
+    int total;
 
 } t_op_count;
 

@@ -71,12 +71,12 @@ void push_current_upper_chunk_to_b(t_stack * game_stack, int lower, int upper)
 {
 	int size = get_stack_length(game_stack->a);
 	int rank_value_at_top;
-	printf("\n upper %d\n", upper);
-	printf("\n lower %d\n", lower);
+	// printf("\n upper %d\n", upper);
+	// printf("\n lower %d\n", lower);
 	while(size > 0){
 		rank_value_at_top = get_rank_from_position(game_stack->a, 0);
 		if (rank_value_at_top >= lower && rank_value_at_top <= upper){
-			printf("\n gets pushed\n");
+			// printf("\n gets pushed\n");
 			pb(game_stack);
 
 
@@ -94,13 +94,13 @@ void push_back_to_descending(t_stack * game_stack, int lower, int upper){
 	// int current_position;
 
 
-	printf("\n current lower %d\n", lower);
+	// printf("\n current lower %d\n", lower);
 
 
 	while(current_rank_value > lower){
 		if (get_index_from_rank(game_stack->b, current_rank_value) < 0)
 			return;
-		printf("\n curent rank value %d\n", current_rank_value);
+		// printf("\n curent rank value %d\n", current_rank_value);
 		if (get_index_from_rank(game_stack->b, current_rank_value) < get_stack_length(game_stack->b) / 2){			
 			while(get_index_from_rank(game_stack->b, current_rank_value) != 0)
 				rb(game_stack);
